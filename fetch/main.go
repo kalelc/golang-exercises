@@ -5,21 +5,37 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
+	newURL := "http://"
+
 	for _, url := range os.Args[1:] {
-		resp, err := http.Get(url)
+
+		if !(strings.HasPrefix(url, newURL)) {
+			newURL += url
+		} else {
+			newURL = url
+		}
+
+		resp, err := http.Get(newURL)
+
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
 		}
+
 		b, err := ioutil.ReadAll(resp.Body)
+
 		resp.Body.Close()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
 			os.Exit(1)
 		}
+
+		fmt.Printf("%s\n", newURL)
+		fmt.Printf("%s\n", string(resp.Status))
 		fmt.Printf("%s", b)
 	}
 }
