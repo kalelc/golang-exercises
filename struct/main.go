@@ -17,11 +17,6 @@ type Wheel struct {
 }
 
 func main() {
-	var w Wheel
-	w.x = 10     // equivalent to w.Circle.Point.X
-	w.y = 12     // equivalent to w.Circle.Point.Y
-	w.Radius = 5 // equivalent to w.Circle.Radius
-	w.spokes = 8
-
-	fmt.Println(w.Circle.Radius)
+	var w = Wheel{Circle{Point{8, 8}, 5}, 20}
+	fmt.Printf("%#v\n", w)
 }
