@@ -59,10 +59,13 @@ func main() {
 	var result []int
 
 	for value := range ch {
+		fmt.Print("Sorted subarray -> ")
+		fmt.Println(value)
 		result = append(result, value...)
 	}
 
 	Sort(&result)
+	fmt.Print("Sorted Array -> ")
 	fmt.Println(result)
 }
 
