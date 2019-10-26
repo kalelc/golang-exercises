@@ -56,3 +56,6 @@ ch := make(chan type, capacity)
 ### Select Operation
 
 The select statement is used to choose from multiple send/receive channel operations. The select statement blocks until one of the send/receive operation is ready. If multiple operations are ready, one of them is chosen at random. The syntax is similar to switch except that each of the case statement will be a channel operation.
+
+#### Default case
+The default case in a select statement is executed when none of the other case is ready. This is generally used to prevent the select statement from blocking.
