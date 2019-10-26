@@ -37,7 +37,6 @@ A send operation on an unbuffered channel blocks the sending goroutine until ano
 
 Communication over an unbuffered channel causes the sending and receiving goroutines to synchronize. Because of this, unbuffered channels are sometimes called synchronous channels. When a value is sent on an unbuffered channel, the receipt of the value happens before the reawakening of the sending goroutine.
 
-
 ### Deadlock
 
 One important factor to consider while using channels is deadlock. If a Goroutine is sending data on a channel, then it is expected that some other Goroutine should be receiving the data. If this does not happen, then the program will panic at runtime with Deadlock.
@@ -53,3 +52,7 @@ Buffered channels can be created by passing an additional capacity parameter to 
 ```
 ch := make(chan type, capacity) 
 ```
+
+### Select Operation
+
+The select statement is used to choose from multiple send/receive channel operations. The select statement blocks until one of the send/receive operation is ready. If multiple operations are ready, one of them is chosen at random. The syntax is similar to switch except that each of the case statement will be a channel operation.
