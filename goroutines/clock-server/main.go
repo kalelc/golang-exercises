@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -26,6 +27,7 @@ func main() {
 func handleConn(c net.Conn) {
 	defer c.Close()
 	for {
+		fmt.Println(time.Now())
 		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
 		if err != nil {
 			return
